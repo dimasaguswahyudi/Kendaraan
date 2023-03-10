@@ -13,4 +13,9 @@ class Mobil extends Model
     protected $fillable = [
         'kendaraan_id', 'mesin', 'kapasitas_penumpang', 'tipe'
     ];
+
+    public function kendaraan()
+    {
+        return $this->belongsTo(kendaraan::class);
+    }
 }

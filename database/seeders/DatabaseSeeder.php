@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             KendaraanSeeder::class,
             MobilSeeder::class,
-            MotorSeeder::class
+            MotorSeeder::class,
+            PenjualanSeeder::class,
+            StokSeeder::class,
         ]);
     }
 }

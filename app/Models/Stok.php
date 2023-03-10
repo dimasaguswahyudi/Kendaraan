@@ -13,4 +13,9 @@ class Stok extends Model
     protected $fillable = [
         'kendaraan_id', 'jumlah'
     ];
+
+    public function kendaraan()
+    {
+        return $this->belongsTo(kendaraan::class);
+    }
 }

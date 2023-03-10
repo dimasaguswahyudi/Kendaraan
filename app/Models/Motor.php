@@ -13,4 +13,9 @@ class Motor extends Model
     protected $fillable = [
         'kendaraan_id', 'mesin', 'tipe_suspensi', 'tipe_transmisi'
     ];
+
+    public function kendaraan()
+    {
+        return $this->belongsTo(kendaraan::class);
+    }
 }
