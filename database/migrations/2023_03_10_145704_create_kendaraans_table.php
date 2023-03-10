@@ -4,20 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePasswordResetsTable extends Migration
+class CreateKendaraansTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    protected $connection = 'mongodb';
     public function up()
     {
-        Schema::create('password_resets', function (Blueprint $collection) {
-            $collection->string('email')->index();
-            $collection->string('token');
-            $collection->timestamp('created_at')->nullable();
+        Schema::create('kendaraans', function (Blueprint $collection) {
+            $collection->year('tahun_keluaran');
+            $collection->string('warna');
+            $collection->integer('harga');
+            $collection->timestamps();
         });
     }
 
@@ -28,6 +28,6 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('password_resets');
+        Schema::dropIfExists('kendaraans');
     }
 }
