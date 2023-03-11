@@ -34,4 +34,9 @@ class StokRepository
         ]);
         return $data;
     }
+    public function getAllStock()
+    {
+        $data = Stok::with('kendaraan.mobil', 'kendaraan.motor')->get();
+        return $data;
+    }
 }

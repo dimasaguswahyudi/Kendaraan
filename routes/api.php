@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\StokController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,9 @@ Route::group([
 });
 
 Route::middleware(['auth:api'])->group(function () {
-    Route::get('penjualan', [PenjualanController::class, 'index']);
     Route::get('getpenjualan/{kendaraan_id}', [PenjualanController::class, 'getPenjualan']);
-    Route::post('penjualan', [PenjualanController::class, 'store']);
+    Route::apiResources([
+        'penjualan' => PenjualanController::class,
+        'stok' => StokController::class
+    ]);
 });
