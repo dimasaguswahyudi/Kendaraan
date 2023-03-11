@@ -28,7 +28,15 @@ class PenjualanRepository
     }
     public function getPenjualan($kendaraan_id)
     {
-        $penjualan = $this->penjualan->with('kendaraan.mobil','kendaraan.motor')->where('kendaraan_id', $kendaraan_id)->get();
+        $penjualan = $this->penjualan->with('kendaraan.mobil', 'kendaraan.motor')->where('kendaraan_id', $kendaraan_id)->get();
         return $penjualan;
+    }
+    public function store($request)
+    {
+        $data = $this->penjualan->create([
+            'kendaraan_id' => $request['kendaraan_id'],
+            'jumlah' => $request['jumlah'],
+        ]);
+        return $data;
     }
 }
