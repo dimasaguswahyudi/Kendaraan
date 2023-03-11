@@ -2,15 +2,19 @@
 
 namespace App\Services\Penjualan;
 
-use App\Models\Penjualan;
 use App\Repositories\Penjualan\PenjualanRepository;
 
-class PenjualanService extends Penjualan{
-    private PenjualanRepository $repository;
+class PenjualanService{
+    private PenjualanRepository $penjualanRepository;
 
-    public function __construct()
+    public function __construct(PenjualanRepository $penjualanRepository)
     {
-        $this->repository = new Penjualan();
+        $this->penjualanRepository = $penjualanRepository;
+    }
+
+    public function getAllPenjualan()
+    {
+        return $this->penjualanRepository->getAllPenjualan();
     }
 }
 

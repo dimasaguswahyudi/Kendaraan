@@ -10,7 +10,7 @@ use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 /**
  * Class PenjualanRepository.
  */
-class PenjualanRepository implements PenjualanRepositoryInterface
+class PenjualanRepository
 {
     protected $penjualan;
     /**
