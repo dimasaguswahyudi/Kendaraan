@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kendaraan;
-use App\Models\Motor;
-use App\Models\Penjualan;
 use App\Models\Stok;
+use App\Models\Motor;
+use App\Models\Kendaraan;
+use App\Models\Penjualan;
+use App\Repositories\Penjualan\PenjualanRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class PenjualanController extends Controller
 {
-    public function index()
+    private PenjualanRepositoryInterface $penjualanRepository;
+
+    public function __construct(PenjualanRepositoryInterface $penjualanRepository)
     {
-        $data = Kendaraan::with('mobil', 'motor', 'stok')->get();
-        // $data = Stok::with('kendaraan')->get();
-        return response()->json($data, 200);
+        $this->penjualanRepository = $penjualanRepository;
+    }
+
+    public function index(): JsonResponse
+    {
+        return response()->json([
+            'data' => $this->penjualanRepository->getAllPenjualan()
+        ]);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Penjualan\PenjualanRepository;
+use App\Repositories\Penjualan\PenjualanRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(PenjualanRepositoryInterface::class, PenjualanRepository::class);
     }
 
     /**
