@@ -28,8 +28,10 @@ class PenjualanController extends Controller
             'data' => $this->penjualanService->getPenjualan($kendaraan_id)
         ]);
     }
-    public function store(Request $request)
+    public function store(PenjualanRequest $request)
     {
+        $validated = $request->validated();
+        dd($validated);
         $data = $this->penjualanService->store($request->all());
         return response()->json($data->original);
     }

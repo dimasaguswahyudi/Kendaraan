@@ -41,7 +41,7 @@ class PenjualanService{
     {
         try {
             $stok = $this->stokRepository->getStok($request);
-            if ($request['jumlah'] > $stok) {
+            if ($request['jumlah'] > $stok->jumlah) {
                 return response()->json([
                     'success' => false,
                     'code' => 400,
@@ -49,7 +49,12 @@ class PenjualanService{
                 ], 400);
             }
             else{
-                $this->penjualanRepository->store($request);
+                $return = $this->penjualanRepository->store($request);
+                $data = [
+                    'id' => $stok->_id,
+                    'jumlah' => $stok->jumlah - $return['jumlah']
+                ];
+                $this->stokRepository->updateStok($data);
                 return response()->json([
                     'success' => true,
                     'code' => 200,

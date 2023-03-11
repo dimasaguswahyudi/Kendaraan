@@ -3,6 +3,7 @@
 namespace App\Repositories\Stok;
 
 use App\Models\Stok;
+use Illuminate\Support\Arr;
 
 //use Your Model
 
@@ -24,6 +25,13 @@ class StokRepository
     public function getStok($request)
     {
         $data = $this->stok->where('kendaraan_id', $request['kendaraan_id'])->first();
-        return $data->jumlah;
+        return $data;
+    }
+    public function updateStok($data)
+    {
+        $data = $this->stok->find($data['id'])->update([
+            'jumlah' => $data['jumlah']
+        ]);
+        return $data;
     }
 }
