@@ -10,7 +10,7 @@ use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 /**
  * Class PenjualanRepository.
  */
-class PenjualanRepository implements PenjualanRepositoryInterface
+class PenjualanRepository
 {
     protected $penjualan;
     /**
@@ -26,6 +26,9 @@ class PenjualanRepository implements PenjualanRepositoryInterface
     {
         return $this->penjualan->with('kendaraan')->get();
     }
-
-
+    public function getPenjualan($kendaraan_id)
+    {
+        $penjualan = $this->penjualan->with('kendaraan.mobil','kendaraan.motor')->where('kendaraan_id', $kendaraan_id)->get();
+        return $penjualan;
+    }
 }

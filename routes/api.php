@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PenjualanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('penjualan', [PenjualanController::class, 'index']);
+Route::get('getpenjualan/{kendaraan_id}', [PenjualanController::class, 'getPenjualan']);
