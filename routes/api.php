@@ -21,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('penjualan', [PenjualanController::class, 'index']);
 Route::get('getpenjualan/{kendaraan_id}', [PenjualanController::class, 'getPenjualan']);
+Route::post('penjualan', [PenjualanController::class, 'store']);

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Penjualan\PenjualanService;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use App\Http\Requests\PenjualanRequest;
+use App\Services\Penjualan\PenjualanService;
 
 class PenjualanController extends Controller
 {
@@ -25,5 +27,10 @@ class PenjualanController extends Controller
         return response()->json([
             'data' => $this->penjualanService->getPenjualan($kendaraan_id)
         ]);
+    }
+    public function store(Request $request)
+    {
+        $data = $this->penjualanService->store($request->all());
+        return response()->json($data->original);
     }
 }

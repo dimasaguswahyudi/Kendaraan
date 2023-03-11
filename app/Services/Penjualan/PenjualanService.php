@@ -2,15 +2,19 @@
 
 namespace App\Services\Penjualan;
 
+use App\Models\Stok;
 use Illuminate\Support\Facades\Log;
 use App\Repositories\Penjualan\PenjualanRepository;
+use App\Repositories\Stok\StokRepository;
 
 class PenjualanService{
     private PenjualanRepository $penjualanRepository;
+    private StokRepository $stokRepository;
 
-    public function __construct(PenjualanRepository $penjualanRepository)
+    public function __construct(PenjualanRepository $penjualanRepository, StokRepository $stokRepository)
     {
         $this->penjualanRepository = $penjualanRepository;
+        $this->stokRepository = $stokRepository;
     }
 
     public function getAllPenjualan()
@@ -27,6 +31,31 @@ class PenjualanService{
     {
         try {
             return $this->penjualanRepository->getPenjualan($kendaraan_id);
+        } catch (\Exception $ex) {
+            Log::debug($ex->getMessage());
+            return [];
+        }
+    }
+
+    public function store($request)
+    {
+        try {
+            $stok = $this->stokRepository->getStok($request);
+            if ($request['jumlah'] > $stok) {
+                return response()->json([
+                    'success' => false,
+                    'code' => 400,
+                    'message' => 'Penjualan Barang Melebihi Stok'
+                ], 400);
+            }
+            else{
+                $this->penjualanRepository->store($request);
+                return response()->json([
+                    'success' => true,
+                    'code' => 200,
+                    'message' => 'Penjualan Berhasil Ditambahkan'
+                ], 200);
+            }
         } catch (\Exception $ex) {
             Log::debug($ex->getMessage());
             return [];
