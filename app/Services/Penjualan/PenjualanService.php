@@ -2,6 +2,7 @@
 
 namespace App\Services\Penjualan;
 
+use Illuminate\Support\Facades\Log;
 use App\Repositories\Penjualan\PenjualanRepository;
 
 class PenjualanService{
@@ -14,7 +15,22 @@ class PenjualanService{
 
     public function getAllPenjualan()
     {
-        return $this->penjualanRepository->getAllPenjualan();
+        try {
+            return $this->penjualanRepository->getAllPenjualan();
+        } catch (\Exception $ex) {
+            Log::debug($ex->getMessage());
+            return[];
+        }
+    }
+
+    public function getPenjualan($kendaraan_id)
+    {
+        try {
+            return $this->penjualanRepository->getPenjualan($kendaraan_id);
+        } catch (\Exception $ex) {
+            Log::debug($ex->getMessage());
+            return [];
+        }
     }
 }
 

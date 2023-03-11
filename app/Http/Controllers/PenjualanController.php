@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Stok;
-use App\Models\Motor;
-use App\Models\Kendaraan;
-use App\Models\Penjualan;
 use App\Services\Penjualan\PenjualanService;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 class PenjualanController extends Controller
@@ -23,6 +18,12 @@ class PenjualanController extends Controller
     {
         return response()->json([
             'data' => $this->penjualanService->getAllPenjualan()
+        ]);
+    }
+    public function getPenjualan($kendaraan_id)
+    {
+        return response()->json([
+            'data' => $this->penjualanService->getPenjualan($kendaraan_id)
         ]);
     }
 }
