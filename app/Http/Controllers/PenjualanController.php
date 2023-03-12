@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\PenjualanRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Validator;
 use App\Services\Penjualan\PenjualanService;
 
 class PenjualanController extends Controller
@@ -22,21 +21,14 @@ class PenjualanController extends Controller
             'data' => $this->penjualanService->getAllPenjualan()
         ], 200);
     }
-    public function getPenjualan($kendaraan_id)
+    public function getPenjualan($kendaraan_id): JsonResponse
     {
         return response()->json([
             'data' => $this->penjualanService->getPenjualan($kendaraan_id)
         ], 200);
     }
-    public function store(Request $request)
+    public function store(PenjualanRequest $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'kendaraan_id' => 'required|exists:kendaraans,_id',
-            'jumlah' => 'required|numeric',
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
         $data = $this->penjualanService->store($request->all());
         return response()->json($data->original, 200);
     }

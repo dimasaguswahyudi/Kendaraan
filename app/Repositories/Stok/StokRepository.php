@@ -27,16 +27,24 @@ class StokRepository
         $data = $this->stok->where('kendaraan_id', $request['kendaraan_id'])->first();
         return $data;
     }
-    public function updateStok($data)
+    public function getAllStock()
     {
-        $data = $this->stok->find($data['id'])->update([
-            'jumlah' => $data['jumlah']
+        $data = $this->stok->with('kendaraan.mobil', 'kendaraan.motor')->get();
+        return $data;
+    }
+    public function createStok($request)
+    {
+        $data = $this->stok->create([
+            'kendaraan_id' => $request['kendaraan_id'],
+            'jumlah' => $request['jumlah'],
         ]);
         return $data;
     }
-    public function getAllStock()
+    public function updateStok($request)
     {
-        $data = Stok::with('kendaraan.mobil', 'kendaraan.motor')->get();
+        $data = $this->stok->find($request['id'])->update([
+            'jumlah' => $request['jumlah']
+        ]);
         return $data;
     }
 }

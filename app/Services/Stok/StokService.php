@@ -23,6 +23,26 @@ class StokService{
             return[];
         }
     }
+    public function CreateStok($request)
+    {
+        try {
+            $stok = $this->stokRepository->getStok($request)->toArray();
+            if ($stok != null) {
+                $data = [
+                    'id' => $stok['_id'],
+                    'jumlah' => $stok['jumlah'] - $request['jumlah']
+                ];
+                $return = $this->stokRepository->updateStok($data);
+            }
+            else{
+                $return = $this->stokRepository->createStok($request);
+            }
+            return $return;
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+            return [];
+        }
+    }
 
 }
 
