@@ -13,10 +13,7 @@ use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 class PenjualanRepository
 {
     protected $penjualan;
-    /**
-     * @return string
-     *  Return the model
-     */
+   
     public function __construct(Penjualan $penjualan)
     {
         $this->penjualan = $penjualan;

@@ -3,7 +3,6 @@
 namespace App\Repositories\Stok;
 
 use App\Models\Stok;
-use Illuminate\Support\Arr;
 
 //use Your Model
 
@@ -13,10 +12,7 @@ use Illuminate\Support\Arr;
 class StokRepository
 {
     protected $stok;
-    /**
-     * @return string
-     *  Return the model
-     */
+
     public function __construct(Stok $stok)
     {
         $this->stok = $stok;
