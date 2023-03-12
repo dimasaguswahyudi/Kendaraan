@@ -38,7 +38,7 @@ class PenjualanService{
             else{
                 $return = $this->penjualanRepository->store($request);
                 $data = [
-                    'kendaraan_id' => $stok['_id'],
+                    'id' => $stok['_id'],
                     'jumlah' => $stok['jumlah'] - $return['jumlah']
                 ];
                 $this->stokRepository->updateStok($data);

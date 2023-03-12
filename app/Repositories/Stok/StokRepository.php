@@ -35,7 +35,7 @@ class StokRepository
     }
     public function updateStok($request)
     {
-        $data = $this->stok->find($request['kendaraan_id'])->update([
+        $data = $this->stok->find($request['id'])->update([
             'jumlah' => $request['jumlah']
         ]);
         return $data;
