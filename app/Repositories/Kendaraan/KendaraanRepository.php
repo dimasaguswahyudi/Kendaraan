@@ -27,9 +27,9 @@ class KendaraanRepository
     {
         return $this->kendaraan->create($request);
     }
-    public function updateKendaraan($request, $id)
+    public function updateKendaraan($request, $kendaraan)
     {
-        $data = $this->kendaraan->find($id)->update($request);
+        $data = $kendaraan->update($request);
         return $data;
     }
 }

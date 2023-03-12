@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MotorRequest;
+use App\Models\Motor;
 use App\Services\Motor\MotorService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -27,8 +28,8 @@ class MotorController extends Controller
         return $this->motorService->createMotor($request->all());
     }
 
-    public function update(MotorRequest $request, $id): JsonResponse
+    public function update(MotorRequest $request, Motor $motor): JsonResponse
     {
-        return $this->motorService->updateMotor($request->all(), $id);
+        return $this->motorService->updateMotor($request->all(), $motor);
     }
 }

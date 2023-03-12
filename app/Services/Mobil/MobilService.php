@@ -21,9 +21,9 @@ class MobilService{
         $this->mobilRepository->createMobil($request);
         return $this->ResReturn(true, "Data Berhasil Ditambah");
     }
-    public function updateMobil($request, $id)
+    public function updateMobil($request, $mobil)
     {
-        $this->mobilRepository->updateMobil($request, $id);
+        $this->mobilRepository->updateMobil($request, $mobil);
         return $this->ResReturn(true, "Data Berhasil Diupdate");
     }
 }

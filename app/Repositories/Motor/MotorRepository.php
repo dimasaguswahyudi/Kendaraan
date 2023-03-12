@@ -24,22 +24,12 @@ class MotorRepository
     }
     public function createMotor($request)
     {
-        $data = $this->motor->create([
-            'kendaraan_id' => $request['kendaraan_id'],
-            'mesin' => $request['mesin'],
-            'tipe_suspensi' => $request['tipe_suspensi'],
-            'tipe_transmisi' => $request['tipe_transmisi'],
-        ]);
+        $data = $this->motor->create($request);
         return $data;
     }
-    public function updateMotor($request, $id)
+    public function updateMotor($request, Motor $motor)
     {
-        $data = $this->motor->find($id)->update([
-            'kendaraan_id' => $request['kendaraan_id'],
-            'mesin' => $request['mesin'],
-            'tipe_suspensi' => $request['tipe_suspensi'],
-            'tipe_transmisi' => $request['tipe_transmisi'],
-        ]);
+        $data = $motor->update($request);
         return $data;
     }
 

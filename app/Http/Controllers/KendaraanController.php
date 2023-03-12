@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\KendaraanRequest;
+use App\Models\Kendaraan;
 use App\Services\Kendaraan\KendaraanService;
 
 class KendaraanController extends Controller
@@ -25,8 +26,8 @@ class KendaraanController extends Controller
     {
         return $this->kendaraanService->createKendaraan($request->all());
     }
-    public function update(KendaraanRequest $request, $id)
+    public function update(KendaraanRequest $request, Kendaraan $kendaraan): JsonResponse
     {
-        return $this->kendaraanService->updateKendaraan($request->all(), $id);
+        return $this->kendaraanService->updateKendaraan($request->all(), $kendaraan);
     }
 }

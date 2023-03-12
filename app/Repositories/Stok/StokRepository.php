@@ -30,10 +30,7 @@ class StokRepository
     }
     public function createStok($request)
     {
-        $data = $this->stok->create([
-            'kendaraan_id' => $request['kendaraan_id'],
-            'jumlah' => $request['jumlah'],
-        ]);
+        $data = $this->stok->create($request);
         return $data;
     }
     public function updateStok($request)

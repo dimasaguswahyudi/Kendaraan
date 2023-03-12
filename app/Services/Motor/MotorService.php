@@ -22,9 +22,9 @@ class MotorService {
         $this->motorRepository->createMotor($request);
         return $this->ResReturn(true, "Data Berhasil Ditambah");
     }
-    public function updateMotor($request, $id)
+    public function updateMotor($request, $motor)
     {
-        $this->motorRepository->updateMotor($request, $id);
+        $this->motorRepository->updateMotor($request, $motor);
         return $this->ResReturn(true, "Data Berhasil Diupdate");
     }
 }
