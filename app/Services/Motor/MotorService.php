@@ -1,26 +1,23 @@
 <?php
 
-namespace App\Services\Mobil;
+namespace App\Services\Motor;
 
-use App\Repositories\Kendaraan\KendaraanRepository;
-use App\Repositories\Mobil\MobilRepository;
-use Illuminate\Support\Facades\Log;
-use App\Repositories\Penjualan\PenjualanRepository;
-use App\Repositories\Stok\StokRepository;
+use App\Repositories\Motor\MotorRepository;
 
-class MobilService{
-    private MobilRepository $mobilRepository;
-    public function __construct(MobilRepository $mobilRepository)
+class MotorService {
+    private MotorRepository $motorRepository;
+    public function __construct(MotorRepository $motorRepository)
     {
-        $this->mobilRepository = $mobilRepository;
+        $this->motorRepository = $motorRepository;
     }
-    public function getAllMobil()
+
+    public function getAllMotor()
     {
-        return $this->mobilRepository->getAllMobil();
+        return $this->motorRepository->getAllMotor();
     }
-    public function createMobil($request)
+    public function createMotor($request)
     {
-        $data = $this->mobilRepository->createMobil($request);
+        $data = $this->motorRepository->createMotor($request);
         if ($data == true) {
             return response()->json([
                 'success' => true,
@@ -36,9 +33,9 @@ class MobilService{
             ], 400);
         }
     }
-    public function updateMobil($request, $id)
+    public function updateMotor($request, $id)
     {
-        $data = $this->mobilRepository->updateMobil($request, $id);
+        $data = $this->motorRepository->updateMotor($request, $id);
         if ($data == true) {
             return response()->json([
                 'success' => true,
@@ -55,4 +52,3 @@ class MobilService{
         }
     }
 }
-
