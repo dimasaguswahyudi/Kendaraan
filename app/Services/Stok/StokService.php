@@ -5,8 +5,10 @@ namespace App\Services\Stok;
 use App\Models\Stok;
 use Illuminate\Support\Facades\Log;
 use App\Repositories\Stok\StokRepository;
+use App\Traits\ReturnResponse;
 
 class StokService{
+    use ReturnResponse;
     private StokRepository $stokRepository;
 
     public function __construct(StokRepository $stokRepository)
@@ -16,12 +18,7 @@ class StokService{
 
     public function getAllStok()
     {
-        try {
-            return $this->stokRepository->getAllStock();
-        } catch (\Exception $ex) {
-            Log::debug($ex->getMessage());
-            return[];
-        }
+        return $this->stokRepository->getAllStock();
     }
     public function CreateStok($request)
     {
@@ -30,28 +27,14 @@ class StokService{
             if ($stok != null) {
                 $data = [
                     'id' => $stok['_id'],
-                    'jumlah' => $stok['jumlah'] - $request['jumlah']
+                    'jumlah' => $request['jumlah']
                 ];
-                $return = $this->stokRepository->updateStok($data);
+                $this->stokRepository->updateStok($data);
             }
             else{
-                $return = $this->stokRepository->createStok($request);
+                $this->stokRepository->createStok($request);
             }
-
-            if ($return == true) {
-                return response()->json([
-                    'success' => true,
-                    'code' => 200,
-                    'message' => 'Data Berhasil Ditambahkan/Diupdate',
-                ], 200);
-            }
-            else{
-                return response()->json([
-                    'success' => false,
-                    'code' => 400,
-                    'message' => 'Data Gagal Ditambahkan/Diupdate',
-                ], 200);
-            }
+            return $this->ResReturn(true, "Data Berhasil Ditambah/Diupdate");
         } catch (\Exception $ex) {
             return $ex->getMessage();
             return [];
