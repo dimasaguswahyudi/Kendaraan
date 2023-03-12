@@ -37,7 +37,21 @@ class StokService{
             else{
                 $return = $this->stokRepository->createStok($request);
             }
-            return $return;
+
+            if ($return == true) {
+                return response()->json([
+                    'success' => true,
+                    'code' => 200,
+                    'message' => 'Data Berhasil Ditambahkan/Diupdate',
+                ], 200);
+            }
+            else{
+                return response()->json([
+                    'success' => false,
+                    'code' => 400,
+                    'message' => 'Data Gagal Ditambahkan/Diupdate',
+                ], 200);
+            }
         } catch (\Exception $ex) {
             return $ex->getMessage();
             return [];

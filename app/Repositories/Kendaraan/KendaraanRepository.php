@@ -17,6 +17,12 @@ class KendaraanRepository
         $this->kendaraan = $kendaraan;
     }
 
+    public function getAllKendaraan()
+    {
+        $data = $this->kendaraan->get();
+        return $data;
+    }
+
     public function createKendaraan($request)
     {
         $data = $this->kendaraan->create([

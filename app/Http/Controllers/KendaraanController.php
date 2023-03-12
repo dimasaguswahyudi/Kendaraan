@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Requests\KendaraanRequest;
 use App\Services\Kendaraan\KendaraanService;
-use Illuminate\Http\JsonResponse;
 
 class KendaraanController extends Controller
 {
@@ -15,16 +15,18 @@ class KendaraanController extends Controller
     {
         $this->kendaraanService = $kendaraanService;
     }
-
+    public function index(): JsonResponse
+    {
+        return response()->json([
+            'data' => $this->kendaraanService->getAllKendaraan()
+        ], 200);
+    }
     public function store(KendaraanRequest $request): JsonResponse
     {
-        $data = $this->kendaraanService->createKendaraan($request->all());
-        return response()->json($data);
+        return $this->kendaraanService->createKendaraan($request->all());
     }
-    public function update(Request $request, $id)
+    public function update(KendaraanRequest $request, $id)
     {
-        dd($request->all());
-        // $data = $this->kendaraanService->updateKendaraan($request->all());
-        // return response()->json($data);
+        return $this->kendaraanService->updateKendaraan($request->all(), $id);
     }
 }
