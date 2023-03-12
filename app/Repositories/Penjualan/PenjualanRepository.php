@@ -33,4 +33,11 @@ class PenjualanRepository
         $data = $this->penjualan->create($request);
         return $data;
     }
+    public function updatePenjualan($request, $penjualan)
+    {
+        $penjualan->kendaraan_id = $request['kendaraan_id'];
+        $penjualan->jumlah = $request['jumlah'];
+        $penjualan->save();
+        return $penjualan;
+    }
 }
