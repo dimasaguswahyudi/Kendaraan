@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KendaraanController;
+use App\Http\Controllers\MobilController;
+use App\Http\Controllers\MotorController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\StokController;
 use Illuminate\Http\Request;
@@ -31,6 +33,8 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('getpenjualan/{kendaraan_id}', [PenjualanController::class, 'getPenjualan']);
     Route::apiResources([
         'kendaraan' => KendaraanController::class,
+        'mobil' => MobilController::class,
+        'motor' => MotorController::class,
         'penjualan' => PenjualanController::class,
         'stok' => StokController::class,
     ]);

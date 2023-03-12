@@ -2,7 +2,6 @@
 
 namespace App\Services\Penjualan;
 
-use App\Models\Stok;
 use Illuminate\Support\Facades\Log;
 use App\Repositories\Penjualan\PenjualanRepository;
 use App\Repositories\Stok\StokRepository;
