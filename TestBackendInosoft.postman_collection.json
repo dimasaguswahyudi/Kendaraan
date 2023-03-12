@@ -211,6 +211,46 @@
 			"response": []
 		},
 		{
+			"name": "Update Penjualan",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY3ODYzNzQ3NiwiZXhwIjoxNjc4NjQxMDc2LCJuYmYiOjE2Nzg2Mzc0NzYsImp0aSI6InlhTEpjQkgwVnlsSWh0ajAiLCJzdWIiOiI2NDBkZGI4YzIyNTRhMThjOTcwODg1M2EiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lxoJ1QMdR9vuySf3Cwih_5Yj8xReNE7b_cUUijF4cQA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"kendaraan_id\" : \"640ddb8c2254a18c97088544\",\r\n    \"jumlah\" : 187\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/penjualan/640ddb8c2254a18c97088580",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"penjualan",
+						"640ddb8c2254a18c97088580"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "getStok",
 			"request": {
 				"auth": {
