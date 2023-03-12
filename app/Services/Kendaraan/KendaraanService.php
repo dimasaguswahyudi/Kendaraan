@@ -3,9 +3,11 @@
 namespace App\Services\Kendaraan;
 
 use App\Repositories\Kendaraan\KendaraanRepository;
+use App\Traits\ReturnResponse;
 
 class KendaraanService
 {
+    use ReturnResponse;
     private KendaraanRepository $KendaraanRepository;
 
     public function __construct(KendaraanRepository $KendaraanRepository)
@@ -20,38 +22,12 @@ class KendaraanService
 
     public function createKendaraan($request)
     {
-        $data = $this->KendaraanRepository->createKendaraan($request);
-        if ($data == true) {
-            return response()->json([
-                'success' => true,
-                'code' => 200,
-                'message' => 'Data Berhasil Ditambahkan',
-            ], 200);
-        }
-        else{
-            return response()->json([
-                'success' => false,
-                'code' => 400,
-                'message' => 'Data Gagal Ditambahkan',
-            ], 400);
-        }
+        $this->KendaraanRepository->createKendaraan($request);
+        return $this->ResReturn(true, "Data Berhasil Ditambah");
     }
     public function updateKendaraan($request, $id)
     {
-        $data = $this->KendaraanRepository->updateKendaraan($request, $id);
-        if ($data == true) {
-            return response()->json([
-                'success' => true,
-                'code' => 200,
-                'message' => 'Data Berhasil Diupdate',
-            ], 200);
-        }
-        else{
-            return response()->json([
-                'success' => false,
-                'code' => 400,
-                'message' => 'Data Gagal Diupdate',
-            ], 400);
-        }
+        $this->KendaraanRepository->updateKendaraan($request, $id);
+        return $this->ResReturn(true, "Data Berhasil Diupdate");
     }
 }

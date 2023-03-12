@@ -3,8 +3,10 @@
 namespace App\Services\Mobil;
 
 use App\Repositories\Mobil\MobilRepository;
+use App\Traits\ReturnResponse;
 
 class MobilService{
+    use ReturnResponse;
     private MobilRepository $mobilRepository;
     public function __construct(MobilRepository $mobilRepository)
     {
@@ -16,39 +18,13 @@ class MobilService{
     }
     public function createMobil($request)
     {
-        $data = $this->mobilRepository->createMobil($request);
-        if ($data == true) {
-            return response()->json([
-                'success' => true,
-                'code' => 200,
-                'message' => 'Data Berhasil Ditambahkan',
-            ], 200);
-        }
-        else{
-            return response()->json([
-                'success' => false,
-                'code' => 400,
-                'message' => 'Data Gagal Ditambahkan',
-            ], 400);
-        }
+        $this->mobilRepository->createMobil($request);
+        return $this->ResReturn(true, "Data Berhasil Ditambah");
     }
     public function updateMobil($request, $id)
     {
-        $data = $this->mobilRepository->updateMobil($request, $id);
-        if ($data == true) {
-            return response()->json([
-                'success' => true,
-                'code' => 200,
-                'message' => 'Data Berhasil Diupdate',
-            ], 200);
-        }
-        else{
-            return response()->json([
-                'success' => false,
-                'code' => 400,
-                'message' => 'Data Gagal Diupdate',
-            ], 400);
-        }
+        $this->mobilRepository->updateMobil($request, $id);
+        return $this->ResReturn(true, "Data Berhasil Diupdate");
     }
 }
 
