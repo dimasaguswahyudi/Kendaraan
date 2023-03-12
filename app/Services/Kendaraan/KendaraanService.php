@@ -13,6 +13,11 @@ class KendaraanService
         $this->KendaraanRepository = $KendaraanRepository;
     }
 
+    public function getAllKendaraan()
+    {
+        return $this->KendaraanRepository->getAllKendaraan();
+    }
+
     public function createKendaraan($request)
     {
         $data = $this->KendaraanRepository->createKendaraan($request);
