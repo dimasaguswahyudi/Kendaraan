@@ -23,22 +23,12 @@ class MobilRepository
     }
     public function createMobil($request)
     {
-        $data = $this->mobil->create([
-            'kendaraan_id' => $request['kendaraan_id'],
-            'mesin' => $request['mesin'],
-            'kapasitas_penumpang' => $request['kapasitas_penumpang'],
-            'tipe' => $request['tipe'],
-        ]);
+        $data = $this->mobil->create($request);
         return $data;
     }
-    public function updateMobil($request, $id)
+    public function updateMobil($request, $mobil)
     {
-        $data = $this->mobil->find($id)->update([
-            'kendaraan_id' => $request['kendaraan_id'],
-            'mesin' => $request['mesin'],
-            'kapasitas_penumpang' => $request['kapasitas_penumpang'],
-            'tipe' => $request['tipe'],
-        ]);
+        $data = $mobil->update($request);
         return $data;
     }
 

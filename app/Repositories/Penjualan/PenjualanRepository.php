@@ -13,7 +13,7 @@ use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 class PenjualanRepository
 {
     protected $penjualan;
-   
+
     public function __construct(Penjualan $penjualan)
     {
         $this->penjualan = $penjualan;
@@ -30,10 +30,7 @@ class PenjualanRepository
     }
     public function store($request)
     {
-        $data = $this->penjualan->create([
-            'kendaraan_id' => $request['kendaraan_id'],
-            'jumlah' => $request['jumlah'],
-        ]);
+        $data = $this->penjualan->create($request);
         return $data;
     }
 }

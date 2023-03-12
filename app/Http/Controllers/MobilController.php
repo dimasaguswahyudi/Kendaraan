@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MobilRequest;
+use App\Models\Mobil;
 use App\Services\Mobil\MobilService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -28,9 +29,9 @@ class MobilController extends Controller
         return $this->mobilService->createMobil($request->all());
     }
 
-    public function update(MobilRequest $request, $id): JsonResponse
+    public function update(MobilRequest $request, Mobil $mobil): JsonResponse
     {
-        return $this->mobilService->updateMobil($request->all(), $id);
+        return $this->mobilService->updateMobil($request->all(), $mobil);
     }
 
 }

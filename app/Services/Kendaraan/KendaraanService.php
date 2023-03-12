@@ -25,9 +25,9 @@ class KendaraanService
         $this->KendaraanRepository->createKendaraan($request);
         return $this->ResReturn(true, "Data Berhasil Ditambah");
     }
-    public function updateKendaraan($request, $id)
+    public function updateKendaraan($request, $kendaraan)
     {
-        $this->KendaraanRepository->updateKendaraan($request, $id);
+        $this->KendaraanRepository->updateKendaraan($request, $kendaraan);
         return $this->ResReturn(true, "Data Berhasil Diupdate");
     }
 }
