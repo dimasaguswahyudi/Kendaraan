@@ -2,11 +2,7 @@
 
 namespace App\Services\Mobil;
 
-use App\Repositories\Kendaraan\KendaraanRepository;
 use App\Repositories\Mobil\MobilRepository;
-use Illuminate\Support\Facades\Log;
-use App\Repositories\Penjualan\PenjualanRepository;
-use App\Repositories\Stok\StokRepository;
 
 class MobilService{
     private MobilRepository $mobilRepository;
