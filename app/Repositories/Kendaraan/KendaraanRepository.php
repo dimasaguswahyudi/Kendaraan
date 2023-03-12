@@ -25,20 +25,11 @@ class KendaraanRepository
 
     public function createKendaraan($request)
     {
-        $data = $this->kendaraan->create([
-            'tahun_keluaran' => $request['tahun_keluaran'],
-            'warna' => $request['warna'],
-            'harga' => $request['harga'],
-        ]);
-        return $data;
+        return $this->kendaraan->create($request);
     }
     public function updateKendaraan($request, $id)
     {
-        $data = $this->kendaraan->find($id)->update([
-            'tahun_keluaran' => $request['tahun_keluaran'],
-            'warna' => $request['warna'],
-            'harga' => $request['harga'],
-        ]);
+        $data = $this->kendaraan->find($id)->update($request);
         return $data;
     }
 }

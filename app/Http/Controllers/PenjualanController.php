@@ -29,7 +29,6 @@ class PenjualanController extends Controller
     }
     public function store(PenjualanRequest $request): JsonResponse
     {
-        $data = $this->penjualanService->store($request->all());
-        return response()->json($data->original, 200);
+        return $this->penjualanService->store($request->all());
     }
 }

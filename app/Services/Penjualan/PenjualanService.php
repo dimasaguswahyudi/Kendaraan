@@ -5,8 +5,10 @@ namespace App\Services\Penjualan;
 use Illuminate\Support\Facades\Log;
 use App\Repositories\Penjualan\PenjualanRepository;
 use App\Repositories\Stok\StokRepository;
+use App\Traits\ReturnResponse;
 
 class PenjualanService{
+    use ReturnResponse;
     private PenjualanRepository $penjualanRepository;
     private StokRepository $stokRepository;
 
@@ -18,51 +20,32 @@ class PenjualanService{
 
     public function getAllPenjualan()
     {
-        try {
-            return $this->penjualanRepository->getAllPenjualan();
-        } catch (\Exception $ex) {
-            Log::debug($ex->getMessage());
-            return[];
-        }
+        return $this->penjualanRepository->getAllPenjualan();
     }
 
     public function getPenjualan($kendaraan_id)
     {
-        try {
-            return $this->penjualanRepository->getPenjualan($kendaraan_id);
-        } catch (\Exception $ex) {
-            Log::debug($ex->getMessage());
-            return [];
-        }
+        return $this->penjualanRepository->getPenjualan($kendaraan_id);
     }
 
     public function store($request)
     {
         try {
-            $stok = $this->stokRepository->getStok($request);
-            if ($request['jumlah'] > $stok->jumlah) {
-                return response()->json([
-                    'success' => false,
-                    'code' => 400,
-                    'message' => 'Penjualan Barang Melebihi Stok'
-                ], 400);
+            $stok = $this->stokRepository->getStok($request)->toArray();
+            if ($request['jumlah'] > $stok['jumlah']) {
+                return $this->ResReturn(false, "Penjualan Barang Melebihi Stok");
             }
             else{
                 $return = $this->penjualanRepository->store($request);
                 $data = [
-                    'kendaraan_id' => $stok->_id,
-                    'jumlah' => $stok->jumlah - $return['jumlah']
+                    'kendaraan_id' => $stok['_id'],
+                    'jumlah' => $stok['jumlah'] - $return['jumlah']
                 ];
                 $this->stokRepository->updateStok($data);
-                return response()->json([
-                    'success' => true,
-                    'code' => 200,
-                    'message' => 'Penjualan Berhasil Ditambahkan'
-                ], 200);
+                return $this->ResReturn(true,"Data Berhasil Ditambahkan");
             }
         } catch (\Exception $ex) {
-            Log::debug($ex->getMessage());
-            return [];
+            return $ex->getMessage();
         }
     }
 }

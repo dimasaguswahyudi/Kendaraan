@@ -3,8 +3,10 @@
 namespace App\Services\Motor;
 
 use App\Repositories\Motor\MotorRepository;
+use App\Traits\ReturnResponse;
 
 class MotorService {
+    use ReturnResponse;
     private MotorRepository $motorRepository;
     public function __construct(MotorRepository $motorRepository)
     {
@@ -17,38 +19,12 @@ class MotorService {
     }
     public function createMotor($request)
     {
-        $data = $this->motorRepository->createMotor($request);
-        if ($data == true) {
-            return response()->json([
-                'success' => true,
-                'code' => 200,
-                'message' => 'Data Berhasil Ditambahkan',
-            ], 200);
-        }
-        else{
-            return response()->json([
-                'success' => false,
-                'code' => 400,
-                'message' => 'Data Gagal Ditambahkan',
-            ], 400);
-        }
+        $this->motorRepository->createMotor($request);
+        return $this->ResReturn(true, "Data Berhasil Ditambah");
     }
     public function updateMotor($request, $id)
     {
-        $data = $this->motorRepository->updateMotor($request, $id);
-        if ($data == true) {
-            return response()->json([
-                'success' => true,
-                'code' => 200,
-                'message' => 'Data Berhasil Diupdate',
-            ], 200);
-        }
-        else{
-            return response()->json([
-                'success' => false,
-                'code' => 400,
-                'message' => 'Data Gagal Diupdate',
-            ], 400);
-        }
+        $this->motorRepository->updateMotor($request, $id);
+        return $this->ResReturn(true, "Data Berhasil Diupdate");
     }
 }
