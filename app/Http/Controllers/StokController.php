@@ -14,11 +14,6 @@ class StokController extends Controller
         $this->stokService = $stokService;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $data = $this->stokService->getAllStok();
@@ -26,13 +21,6 @@ class StokController extends Controller
             'data' => $data
         ], 200);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StokRequest $request)
     {
         return $this->stokService->CreateStok($request->all());
