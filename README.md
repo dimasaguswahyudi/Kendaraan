@@ -101,3 +101,5 @@ Setting Token Terlebih dahulu
     18.C Json Response "kendaraan_id, mesin, tipe_suspensi, tipe_transmisi"
     18.D Run
 
+Running Test Case
+1. php artisan test
