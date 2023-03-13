@@ -5,11 +5,12 @@ namespace Tests\Unit;
 use App\Models\Mobil;
 use App\Models\Kendaraan;
 use App\Models\Motor;
-use PHPUnit\Framework\TestCase;
+// use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class KendaraanTest extends TestCase
 {
-    public function creare()
+    public function create()
     {
         $kendaraan1 = Kendaraan::create([
             'tahun_keluaran' => 2017,
@@ -36,7 +37,6 @@ class KendaraanTest extends TestCase
             'tipe_suspensi' => "T827",
             'tipe_transmisi' => "T72h"
         ]);
-        $this->assertTrue(true);
     }
     /**
      * A basic unit test example.
@@ -45,6 +45,7 @@ class KendaraanTest extends TestCase
      */
     public function test_example()
     {
+        $this->create();
         $this->assertTrue(true);
     }
 }

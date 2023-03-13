@@ -29,7 +29,6 @@ class PenjualanTest extends TestCase
         ]);
 
         $this->add_penjualan($kendaraan, $stok);
-        $this->assertTrue(true);
     }
     public function add_penjualan($kendaraan, $stok)
     {
@@ -40,10 +39,10 @@ class PenjualanTest extends TestCase
         $stok = $stok->update([
             'jumlah' => $stok->jumlah - $result->jumlah
         ]);
-        $this->assertTrue(true);
     }
     public function testBasicTest()
     {
         $this->create();
+        $this->assertTrue(true);
     }
 }
