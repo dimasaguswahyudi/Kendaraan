@@ -10,6 +10,9 @@ Instalasi Laravel 8
 9. Import Collection pada postman di file "TestBackendInosoft.postman_collection.json"
 10. Good Job
 
+Dokumentasi API bisa juga dilihat pada link:
+https://documenter.getpostman.com/view/12563133/2s93JtS4oZ#intro
+
 Running Response CRUD
 
 1. Login
